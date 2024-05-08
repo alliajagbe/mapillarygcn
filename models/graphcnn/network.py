@@ -1,5 +1,6 @@
 from graphcnn.layers import *
 from graphcnn.network_description import GraphCNNNetworkDescription
+from mapillarygcn.models.graphcnn.layers_hierarchical import GraphConvolution, GraphPooling, GraphUnPooling
 
 class GraphCNNNetwork(object):
     def __init__(self):
@@ -110,7 +111,7 @@ class HierarchicalGCN(tf.keras.Model):
         self.gcn1 = GraphConvolution(32, activation='relu')
         self.pool1 = GraphPooling()
         self.gcn2 = GraphConvolution(64, activation='relu')
-        self.unpool1 = GraphUnpooling()
+        self.unpool1 = GraphUnPooling()
         self.gcn3 = GraphConvolution(32, activation='relu')
 
     def call(self, inputs, training=False):

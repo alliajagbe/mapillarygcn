@@ -151,3 +151,6 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 # Fit model
 history = model.fit([x, adj], epochs=50, validation_data=(x, adj))
+
+# Evaluate model
+loss, acc = model.evaluate([x, adj], verbose=0)
