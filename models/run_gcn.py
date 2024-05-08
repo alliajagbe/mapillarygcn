@@ -86,7 +86,8 @@ class MapillaryExperiment(object):
         net.make_fc_layer(256)
         
         if is_regression:
-            net.make_fc_layer(1, name='final', with_bn=False, with_act_func = False)
+            net.make_fc_layer(1, name='final', with_bn=False, 
+            with_act_func = False)
         else:
             net.make_fc_layer(2, name='final', with_bn=False, with_act_func = False)
         

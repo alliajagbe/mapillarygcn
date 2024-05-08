@@ -102,3 +102,22 @@ class GraphCNNNetwork(object):
             self.current_V = tf.nn.max_pool(self.current_V, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding=padding, name=scope.name)
 
             return self.current_V
+
+
+class HierarchicalGCN(tf.keras.Model):
+    def __init__(self):
+        super(HierarchicalGCN, self).__init__()
+        self.gcn1 = GraphConvolution(32, activation='relu')
+        self.pool1 = GraphPooling()
+        self.gcn2 = GraphConvolution(64, activation='relu')
+        self.unpool1 = GraphUnpooling()
+        self.gcn3 = GraphConvolution(32, activation='relu')
+
+    def call(self, inputs, training=False):
+        x, adj = inputs
+        x = self.gcn1([x, adj])
+        x, adj = self.pool1([x, adj])
+        x = self.gcn2([x, adj])
+        x, adj = self.unpool1([x, adj])
+        x = self.gcn3([x, adj])
+        return x
