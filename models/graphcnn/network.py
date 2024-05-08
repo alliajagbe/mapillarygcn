@@ -1,6 +1,6 @@
 from graphcnn.layers import *
 from graphcnn.network_description import GraphCNNNetworkDescription
-from mapillarygcn.models.graphcnn.layers_hierarchical import GraphConvolution, GraphPooling, GraphUnPooling
+from models.graphcnn.layers_hierarchical import GraphConvolution, GraphPooling, GraphUnPooling
 
 class GraphCNNNetwork(object):
     def __init__(self):
